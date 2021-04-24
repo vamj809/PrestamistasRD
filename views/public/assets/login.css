@@ -34,7 +34,7 @@
     flex-direction: column;
     align-items:flex-start;
 }
-input[type=email],input[type=password]{
+input[type=email],input[type=password],input[type="text"]{
     width:100%;
     font-size: 1.3em;
 }
@@ -49,12 +49,14 @@ input[type=email],input[type=password]{
 }
 .btnRegister{
     margin-left: 50px;
+    text-decoration: none;
+    display: inline-block;
 }
 .error{
     color: red;
     visibility: hidden;
 }
-.register{
+.noAccount{
     display: flex;
     justify-content: flex-start;
     align-items: center;

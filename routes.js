@@ -3,7 +3,10 @@ const router = express.Router();
 const app = express();
 
 router.get("/", (req, res) => {
-    res.render("login/index.ejs");
+    res.render("login.ejs");
 });
+router.get("/register-page",(req,res)=>{
+    res.render("register-page.ejs");
+})
 
 module.exports = router;
