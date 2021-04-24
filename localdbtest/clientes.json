@@ -1,0 +1,10 @@
+[
+    {
+        "_id": "c12345690",
+        "fullName": "Pedro Sanchez",
+        "cedula": "402-454578-7",
+        "telefono": "8082225252",
+        "endeudado": true,
+        "prestamos": "pr1234567"
+    }
+]

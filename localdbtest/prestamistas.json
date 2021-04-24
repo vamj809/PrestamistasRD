@@ -1,0 +1,17 @@
+[
+    {
+        "_id": "p1256890",
+        "userName": "bartomeumas",
+        "displayName": "Bartomeu Mas",
+        "email": "bartomeumas00@gmail.com",
+        "emailConfirmed": false,
+        "emailConfirmedDate": null,
+        "passwordHash": "abcdefghijk",
+        "passwordSalt": "mnopqrstuvwxyz",
+        "picture": "http://localhost/images/bartomeu.jpg",
+        "lastAccessDate": "03-23-2021",
+        "createdAt": "03-23-2021",
+        "createdBy": "n1234567890",
+        "attempFails": 0
+    }
+]
