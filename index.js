@@ -17,3 +17,6 @@ app.use(routes);
 app.listen(port, () => {
     console.log("Servidor corriendo en el puerto ", port);
 });
+
+//Aclarar informacion
+exports.app = app;

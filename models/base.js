@@ -1,4 +1,4 @@
 // Modelo base con campo universal de ID
-class basemodel {
-    _id = '';
-}
+
+import conn from '../index';
+import config from '../config/api.config';
