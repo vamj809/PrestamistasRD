@@ -26,52 +26,55 @@ async function AuthenticateUser(email, password) {
         password: password
     });
 
+    console.log(res.status);
     console.log(res.data);
+
+    return res;
 }
 
-module.exports = {
-    Auth: (email, password) => config.ApiConsumer({
-        method:"POST",
-        url: config.connectionString + URL_Params + '/auth',
-        params: {
-            user: email,
-            password: password
-        }
-    }),
-    Create: (name, lastname, email, password) => config.ApiConsumer({
-        method:"POST",
-        url: config.connectionString + URL_Params + '/create',
-        params: {
-            displayname: lastname + ', ' + name,
-            email: email,
-            password: password
-        }
-    }),
-    Read: (id) => config.ApiConsumer({
-        method:"GET",
-        url: config.connectionString + URL_Params + '/id=' + id
-    }),
-    ReadAll: () => config.ApiConsumer({
-        method:"GET",
-        url: config.connectionString + URL_Params + '/list',
-        params: {
-            _id: id
-        }
-    }),
-    Update: (prestamista) => config.ApiConsumer({
-        method:"PUT",
-        url: config.connectionString + URL_Params + '/id=' + prestamista.id, 
-        params: {
-            _id:prestamista.id,
-            userName: prestamista.userName,
-            displayname: prestamista.displayname,
-            email: prestamista.email,
-            password: prestamista.password,
-            attemptFails: 0
-        }
-    }),
-    Delete: (id) => config.ApiConsumer({
-        method:"DELETE",
-        url: config.connectionString + URL_Params + '/id=' + id
-    })
+async function Create(name, lastname, email, password){
+    let res = await basemodel.Create(URL_Params, {
+        displayname: lastname + ', ' + name,
+        email: email,
+        password: password
+    });
+
+    console.log(res.status);
+    console.log(res.data);
+    
+    return res;
+}
+
+async function Get(id){
+    let res = await basemodel.Read(URL_Params, id);
+
+    console.log(res.status);
+    console.log(res.data);
+    
+    return res;
+}
+
+async function Update(prestamista){
+    let res = await basemodel.Update(URL_Params, {
+        _id:prestamista.id,
+        userName: prestamista.userName,
+        displayname: prestamista.displayname,
+        email: prestamista.email,
+        password: prestamista.password,
+        attemptFails: 0
+    });
+
+    console.log(res.status);
+    console.log(res.data);
+    
+    return res;
+}
+
+async function Delete(id){
+    let res = await basemodel.Update(URL_Params, id);
+
+    console.log(res.status);
+    console.log(res.data);
+    
+    return res;
 }
