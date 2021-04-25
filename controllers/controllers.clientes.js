@@ -1,6 +1,6 @@
 const model = require('../models/model.clientes');
 const basecontroller = require('./controller.base');
-const URL_Params = '/Clientes';
+const URL_Params = basecontroller.URL.Clientes;
 const Cliente = {}
 
 Cliente.Create = async function Create(cliente){

@@ -1,9 +1,10 @@
 const model = require('../models/model.prestamistas');
 const basecontroller = require('./controller.base');
-const URL_Params = '/Prestamistas';
+const URL_Params = basecontroller.URL.Prestamista;
 const Prestamista = {}
 
 Prestamista.Authenticate = async function AuthenticateUser(req, res) {
+    console.log('Auth');
     try {
         let res = await basecontroller.Auth(URL_Params, {
             user : req.body.email,

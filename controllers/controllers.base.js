@@ -2,8 +2,13 @@
 const config = require('../config/api.config');
 
 //Abstracción de los métodos de consumo de la API para facilitar la extensión de las operaciones.
-
 module.exports = {
+    URL: {
+        Prestamista: '/Prestamistas',
+        Clientes: '/Clientes',
+        Prestamos: '/Prestamos',
+        Pagos: '/Pagos'
+    },
     Auth: (URL_Params,data) => config.ApiConsumer({
         method:"POST",
         url: config.connectionString + URL_Params + '/auth',
