@@ -18,5 +18,5 @@ app.listen(port, () => {
     console.log("Servidor corriendo en el puerto ", port);
 });
 
-//Aclarar informacion
+//Reutilizar constante para otros módulos.
 exports.app = app;
