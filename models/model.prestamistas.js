@@ -1,4 +1,6 @@
 import config from '../config/api.config';
+const basemodel = require('./model.base');
+
 const URL_Params = '/Prestamistas';
 
 //TO-DO: Abstraer el module.exports para uso genérico de los distintos modelos y 
@@ -17,6 +19,15 @@ var Prestamista = function(_prestamista) {
     this.createdBy = _prestamista.createdBy;
     this.attemptFails = _prestamista.attemptFails;
 };
+
+async function AuthenticateUser(email, password) {
+    let res = await basemodel.Auth(URL_Params, {
+        user : email,
+        password: password
+    });
+
+    console.log(res.data);
+}
 
 module.exports = {
     Auth: (email, password) => config.ApiConsumer({
