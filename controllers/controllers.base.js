@@ -1,8 +1,7 @@
-// Modelo base con campo universal de ID
+// Información de conexión con API
 const config = require('../config/api.config');
 
-//TO-DO: Abstraer el module.exports para uso genérico de los distintos modelos y 
-//       poder facilitar la extensión del mismo. #SOLID.
+//Abstracción de los métodos de consumo de la API para facilitar la extensión de las operaciones.
 
 module.exports = {
     Auth: (URL_Params,data) => config.ApiConsumer({
