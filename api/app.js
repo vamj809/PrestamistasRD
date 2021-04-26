@@ -183,78 +183,79 @@ app.use(express.json())
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/prestamista/create', (req, res) => {
-    const prestamistas = req.body;
+    const prestamista = req.body;
    //validate prestamista
-   if(prestamistas.userName == '' || prestamistas.passwordHash == '' || prestamistas.passwordSalt == '' || prestamistas.displayName == '' || prestamistas.email == '')
+   if(prestamista.userName == '' || prestamista.passwordHash == '' || prestamista.passwordSalt == '' || prestamista.displayName == '' || prestamista.email == '')
    {
        return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
    }
    //verify if prestamista exist
-   const prestamista = getPrestamistas();
-   const findExist = prestamista.find(prest => prest.userName === prestamistas.userName || prest.displayName === prestamistas.displayName || prest.email === prestamistas.email);
+   const ListaPrestamistas = getPrestamistas();
+   const findExist = ListaPrestamistas.find(prest => prest.userName === prestamista.userName || prest.displayName === prestamista.displayName || prest.email === prestamista.email);
    if(findExist)
    {
        return res.status(404).send({success: false, msg: 'Username, displayName or email are already taken!'})
    }
     //create prestamista
-    prestamistas.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    prestamista.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
     //save created prestamista
-    prestamistas.push(prestamista);
-    savePrestamistas(prestamistas);
+    ListaPrestamistas.push(prestamista);
+    savePrestamistas(ListaPrestamistas);
     //show messages
     res.send({success: true, msg: 'Prestamista Creado!'});
 
 })
 app.post('/add-client', (req, res) => {
-    const clientes = req.body;
-    if(clientes.name === "" || clientes.cedula === "" || clientes.phone === "")
+    const cliente = req.body;
+    if(cliente.name === "" || cliente.cedula === "" || cliente.phone === "")
     {
         return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
     }
-    const cliente = getCliente();
-    const findExist = cliente.find(cli => cli.name === clientes.name || cli.cedula === clientes.cedula || cli.phone === clientes.phone);
+    const ListaClientes = getCliente();
+    const findExist = ListaClientes.find(cli => cli.name === cliente.name || cli.cedula === cliente.cedula || cli.phone === cliente.phone);
     if(findExist)
     {
         return res.status(404).send({success: false, msg: 'Name, phone or social ID are already taken!'})
     }
-    clientes.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
-    clientes.push(cliente);
-    saveClientes(clientes);
+    cliente.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    ListaClientes.push(cliente);
+    saveClientes(ListaClientes);
     res.send({success: true, msg: 'Cliente Creado!'});
 });
 
 app.post('/prestamo/create', (req, res) => {
-    const prestamos = req.body;
-    if(prestamos.idCliente == "" || prestamos.Monto == "" || prestamos.Cuotas == "" || prestamos.ValorCuotas == "" || prestamos.Interes == "" || prestamos.montoRestantes == "" || prestamos.fechaPrestamo == "" || prestamos.fechaLimite == "")
+    const prestamo = req.body;
+    if(prestamo.idCliente == "" || prestamo.Monto == "" || prestamo.Cuotas == "" || prestamo.ValorCuotas == "" || prestamo.Interes == "" || prestamo.montoRestantes == "" || prestamo.fechaPrestamo == "" || prestamo.fechaLimite == "")
     {
         return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
     }
-    const prestamo = getPrestamo();
-    const findExist = prestamo.find(pre => pre.idCliente === prestamos.idCliente);
-    if(findExist)
-    {
-        return res.status(404).send({success: false, msg: 'idCliente is already taken!'})
-    }
-    prestamos.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
-    prestamos.push(prestamo);
-    savePrestamos(prestamos);
+    const ListaPrestamos = getPrestamo();
+    // const findExist = ListaPrestamos.find(pre => pre.idCliente === prestamos.idCliente);
+    // if(findExist)
+    // {
+    //     return res.status(404).send({success: false, msg: 'idCliente is already taken!'})
+    // }
+    prestamo.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    ListaPrestamos.push(prestamo);
+    savePrestamos(ListaPrestamos);
     res.send({success: true, msg: 'Prestamo Creado!'});
 })
+
 app.post('/pago/create', (req, res) => {
-    const pagos = req.body;
-    if(pagos.idPrestamo == "" || pagos.Monto == "" || pagos.fechaPago == "")
+    const pago = req.body;
+    if(pago.idPrestamo == "" || pago.Monto == "" || pago.fechaPago == "")
     {
         return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
     }
-    const pago = getPago();
-    const findExit = pago.find(pag => pagos.idPrestamo === pagos.idPrestamo);
+    const ListaPagos = getPago();
+    const findExist = ListaPagos.find(pag => pago.idPrestamo === pago.idPrestamo);
     if(findExist)
     {
         return res.status(404).send({success: false, msg: 'idPrestamo is already taken!'})
     }
-    pagos.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
-    pagos.push(pago);
-    savePagos(pagos);
+    pago.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
+    ListaPagos.push(pago);
+    savePagos(ListaPagos);
     res.send({success: true, msg: 'Pago Creado!'});
 })
 
