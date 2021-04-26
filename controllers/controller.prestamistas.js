@@ -26,7 +26,7 @@ Prestamista.Authenticate = async (req, res) => {
 
 Prestamista.Create = async (req, res) => {
     try {
-        let res = await basecontroller.Create(URL_Params, {
+        let response = await basecontroller.Create(URL_Params, {
             username: req.body.email,
             displayname: req.body.lastname + ', ' + req.body.firstname,
             email: req.body.email,
@@ -34,16 +34,16 @@ Prestamista.Create = async (req, res) => {
             passwordSalt: req.body.password
         });
 
-        if(res.data.success){
+        if(response.data.success){
             res.redirect('/');
         } else{
-            throw Error(res.data);
+            throw Error(response.data);
         }
-        return res;
+        return response;
 
     } catch(error) {
         console.log(error.message);
-        res.send("Error del servidor. Vuelva a intentarlo");
+        res.send("Error del servidor. Vuelva a intentarlo: " + error.message);
     }
 }
 

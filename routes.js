@@ -43,9 +43,7 @@ router.get("/page", (req, res) => {
 
 router.get("/logout", (req, res) => {
     req.session.destroy((err) => {
-        if(err) {
-            return console.error(err);
-        }
+        if(err) {return console.error(err);}
         res.redirect('/');
     });
 });
@@ -56,4 +54,5 @@ router.get("/success", (req, res) => {res.render("success.ejs");});
 //Operaciones del Cliente
 router.get("/add-client", (req, res) => {res.render("add-client.ejs");});
 router.post("/add-client", ClientesController.Create);
+
 module.exports = router;

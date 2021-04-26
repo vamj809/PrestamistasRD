@@ -170,93 +170,103 @@ const newPago = new Pago(data4);
 //         })
 // });
 
-
+const bodyParser = require('body-parser');
 const express = require('express');
 const fs = require('fs');
-
 const app = express();
 
 //parse request body
-app.use(express.json())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended : false}))
+const url = require('url');
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 app.post('/prestamista/create', (req, res) => {
-    const prestamista = req.body;
-   //validate prestamista
-   if(prestamista.userName == '' || prestamista.passwordHash == '' || prestamista.passwordSalt == '' || prestamista.displayName == '' || prestamista.email == '')
-   {
-       return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
-   }
-   //verify if prestamista exist
-   const ListaPrestamistas = getPrestamistas();
-   const findExist = ListaPrestamistas.find(prest => prest.userName === prestamista.userName || prest.displayName === prestamista.displayName || prest.email === prestamista.email);
-   if(findExist)
-   {
-       return res.status(404).send({success: false, msg: 'Username, displayName or email are already taken!'})
-   }
+    //If request comes in Json get Json else get request from URL
+    const prestamista = url.parse(req.url,true).query ? url.parse(req.url,true).query : req.body;
+    
+    //validate prestamista
+    if(prestamista.userName == '' || prestamista.passwordHash == '' || prestamista.passwordSalt == '' || prestamista.displayName == '' || prestamista.email == '')
+    {
+        console.log('You left fields empty, check again');
+        return (res.status(404).send({success: false, message: 'You left fields empty, check again'}))
+    }
+    //verify if prestamista exist
+    const ListaPrestamistas = getPrestamistas();
+    const findExist = ListaPrestamistas.find(prest => prest.userName === prestamista.userName || prest.displayName === prestamista.displayName || prest.email === prestamista.email);
+    if(findExist)
+    {
+        console.log('Username, displayName or email are already taken!');
+        return res.status(404).send({success: false, message: 'Username, displayName or email are already taken!'})
+    }
     //create prestamista
     prestamista.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
     //save created prestamista
     ListaPrestamistas.push(prestamista);
     savePrestamistas(ListaPrestamistas);
     //show messages
-    res.send({success: true, msg: 'Prestamista Creado!'});
+    res.send({success: true, message: 'Prestamista Creado!'});
 
 })
 app.post('/add-client', (req, res) => {
-    const cliente = req.body;
+    //If request comes in Json get Json else get request from URL
+    const cliente = url.parse(req.url,true).query ? url.parse(req.url,true).query : req.body;
+    
     if(cliente.name === "" || cliente.cedula === "" || cliente.phone === "")
     {
-        return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
+        return (res.status(404).send({success: false, message: 'You left fields empty, check again'}))
     }
     const ListaClientes = getCliente();
     const findExist = ListaClientes.find(cli => cli.name === cliente.name || cli.cedula === cliente.cedula || cli.phone === cliente.phone);
     if(findExist)
     {
-        return res.status(404).send({success: false, msg: 'Name, phone or social ID are already taken!'})
+        return res.status(404).send({success: false, message: 'Name, phone or social ID are already taken!'})
     }
     cliente.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
     ListaClientes.push(cliente);
     saveClientes(ListaClientes);
-    res.send({success: true, msg: 'Cliente Creado!'});
+    res.send({success: true, message: 'Cliente Creado!'});
 });
 
 app.post('/prestamo/create', (req, res) => {
-    const prestamo = req.body;
+    //If request comes in Json get Json else get request from URL
+    const prestamo = url.parse(req.url,true).query ? url.parse(req.url,true).query : req.body;
     if(prestamo.idCliente == "" || prestamo.Monto == "" || prestamo.Cuotas == "" || prestamo.ValorCuotas == "" || prestamo.Interes == "" || prestamo.montoRestantes == "" || prestamo.fechaPrestamo == "" || prestamo.fechaLimite == "")
     {
-        return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
+        return (res.status(404).send({success: false, message: 'You left fields empty, check again'}))
     }
     const ListaPrestamos = getPrestamo();
     // const findExist = ListaPrestamos.find(pre => pre.idCliente === prestamos.idCliente);
     // if(findExist)
     // {
-    //     return res.status(404).send({success: false, msg: 'idCliente is already taken!'})
+    //     return res.status(404).send({success: false, message: 'idCliente is already taken!'})
     // }
     prestamo.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
     ListaPrestamos.push(prestamo);
     savePrestamos(ListaPrestamos);
-    res.send({success: true, msg: 'Prestamo Creado!'});
+    res.send({success: true, message: 'Prestamo Creado!'});
 })
 
 app.post('/pago/create', (req, res) => {
-    const pago = req.body;
+    //If request comes in Json get Json else get request from URL
+    const pago = url.parse(req.url,true).query ? url.parse(req.url,true).query : req.body;
+
     if(pago.idPrestamo == "" || pago.Monto == "" || pago.fechaPago == "")
     {
-        return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
+        return (res.status(404).send({success: false, message: 'You left fields empty, check again'}))
     }
     const ListaPagos = getPago();
     const findExist = ListaPagos.find(pag => pago.idPrestamo === pago.idPrestamo);
     if(findExist)
     {
-        return res.status(404).send({success: false, msg: 'idPrestamo is already taken!'})
+        return res.status(404).send({success: false, message: 'idPrestamo is already taken!'})
     }
     pago.id = Date.now().toString(36) + Math.random().toString(36).substring(2);
     ListaPagos.push(pago);
     savePagos(ListaPagos);
-    res.send({success: true, msg: 'Pago Creado!'});
+    res.send({success: true, message: 'Pago Creado!'});
 })
 
 app.patch('/prestamista/update', (req, res) => {
@@ -266,11 +276,11 @@ app.patch('/prestamista/update', (req, res) => {
     var findExist = prestamista.find(prest => prest.userName === userName);
     if(!findExist)
     {
-        return res.status(404).send({success: false, msg: 'Prestamista no existe.'})
+        return res.status(404).send({success: false, message: 'Prestamista no existe.'})
     }
     const updatePrestamista = prestamista.filter(prest.userName === userName);
     updatePrestamista.push(prestamista);
-    res.send({success: true, msg: 'Prestamista ha sido actualizado.'});
+    res.send({success: true, message: 'Prestamista ha sido actualizado.'});
 })
 app.patch('/cliente/update', (req, res) => {
     const id = req.body.id;
@@ -279,11 +289,11 @@ app.patch('/cliente/update', (req, res) => {
     var findExist = cliente.find(cli => cli.id === id);
     if(!findExist)
     {
-        return res.status(404).send({success: false, msg: 'Cliente no existe.'})
+        return res.status(404).send({success: false, message: 'Cliente no existe.'})
     }
     const updateCliente = cliente.filter(cli.id === id);
     updateCliente.push(cliente);
-    res.send({success: true, msg: 'Cliente ha sido actualizado.'});
+    res.send({success: true, message: 'Cliente ha sido actualizado.'});
 })
 app.patch('/prestamo/update', (req, res) => {
     const id = req.body.id;
@@ -292,11 +302,11 @@ app.patch('/prestamo/update', (req, res) => {
     var findExist = prestamo.find(pre => pre.id === id);
     if(!findExist)
     {
-        return res.status(404).send({success: false, msg: 'Prestamo no existe.'})
+        return res.status(404).send({success: false, message: 'Prestamo no existe.'})
     }
     const updatePrestamo = prestamo.filter(pre.id === id);
     updatePrestamo.push(prestamo);
-    res.send({success: true, msg: 'Prestamo ha sido actualizado.'});
+    res.send({success: true, message: 'Prestamo ha sido actualizado.'});
 })
 app.patch('/pago/update', (req, res) => {
     const id = req.body.id;
@@ -305,11 +315,11 @@ app.patch('/pago/update', (req, res) => {
     var findExist = pago.find(pag => pag.id === id);
     if(!findExist)
     {
-        return res.status(404).send({success: false, msg: 'Pago no existe.'})
+        return res.status(404).send({success: false, message: 'Pago no existe.'})
     }
     const updatePago = pago.filter(pag.id === id);
     updatePago.push(pago);
-    res.send({success: true, msg: 'Pago ha sido actualizado.'});
+    res.send({success: true, message: 'Pago ha sido actualizado.'});
 })
 
 app.delete('/prestamista/delete', (req, res) => {
@@ -318,10 +328,10 @@ app.delete('/prestamista/delete', (req, res) => {
     const filter = prestamista.filter(prest => prest.userName === userName);
     if(prestamista.length === filter.length)
     {
-        return res.status(404).send({success: false, msg: 'El prestamista no existe.'})
+        return res.status(404).send({success: false, message: 'El prestamista no existe.'})
     }
     savePrestamistas(filter);
-    res.send({success: true, msg: "prestamista eliminado satisfactoriamente!"})
+    res.send({success: true, message: "prestamista eliminado satisfactoriamente!"})
 })
 app.delete('/cliente/delete', (req, res) => {
     const id = req.body.id;
@@ -329,10 +339,10 @@ app.delete('/cliente/delete', (req, res) => {
     const filter = cliente.filter(cli => cli.id === id);
     if(cliente.length === filter.length)
     {
-        return res.status(404).send({success: false, msg: 'El cliente no existe.'})
+        return res.status(404).send({success: false, message: 'El cliente no existe.'})
     }
     saveClientes(filter);
-    res.send({success: true, msg: "cliente eliminado satisfactoriamente!"})
+    res.send({success: true, message: "cliente eliminado satisfactoriamente!"})
 })
 app.delete('/prestamo/delete', (req, res) => {
     const id = req.body.id;
@@ -340,10 +350,10 @@ app.delete('/prestamo/delete', (req, res) => {
     const filter = prestamo.filter(pre => pre.id === id);
     if(prestamo.length === filter.length)
     {
-        return res.status(404).send({success: false, msg: 'El prestamo no existe.'})
+        return res.status(404).send({success: false, message: 'El prestamo no existe.'})
     }
     savePrestamos(filter);
-    res.send({success: true, msg: "prestamo eliminado satisfactoriamente!"})
+    res.send({success: true, message: "prestamo eliminado satisfactoriamente!"})
 })
 app.delete('/pago/delete', (req, res) => {
     const id = req.body.id;
@@ -351,10 +361,10 @@ app.delete('/pago/delete', (req, res) => {
     const filter = pago.filter(pag => pag.id === id);
     if(pago.length === filter.length)
     {
-        return res.status(404).send({success: false, msg: 'El pago no existe.'})
+        return res.status(404).send({success: false, message: 'El pago no existe.'})
     }
     savePagos(filter);
-    res.send({success: true, msg: "pago eliminado satisfactoriamente!"})
+    res.send({success: true, message: "pago eliminado satisfactoriamente!"})
 })
 
 app.get('/prestamista/list', (req, res) => {
@@ -363,7 +373,7 @@ app.get('/prestamista/list', (req, res) => {
 })
 
 const getPrestamistas = (data) => {
-    const jsonData = fs.readFileSync('./localdb_test/prestamista.json');
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamista.json');
     return JSON.parse(jsonData)
 }
 
@@ -373,7 +383,7 @@ app.get('/cliente/list', (req, res) => {
 })
 
 const getCliente = (data) => {
-    const jsonData = fs.readFileSync('./localdb_test/cliente.json');
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/cliente.json');
     return JSON.parse(jsonData)
 }
 
@@ -383,7 +393,7 @@ app.get('/prestamo/list', (req, res) => {
 })
 
 const getPrestamo = (data) => {
-    const jsonData = fs.readFileSync('./localdb_test/prestamo.json');
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamo.json');
     return JSON.parse(jsonData)
 }
 
@@ -393,28 +403,28 @@ app.get('/pago/list', (req, res) => {
 })
 
 const getPago = (data) => {
-    const jsonData = fs.readFileSync('./localdb_test/pago.json');
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/pago.json');
     return JSON.parse(jsonData)
 }
 
 const savePrestamistas = (data) => {
     const stringfyData = JSON.stringify(data);
-    fs.writeFileSync('./localdb_test/prestamista.json', stringfyData);
+    fs.writeFileSync(__dirname + '/localdb_test/prestamista.json', stringfyData);
 }
 
 const saveClientes = (data) => {
     const stringfyData = JSON.stringify(data);
-    fs.writeFileSync('./localdb_test/cliente.json', stringfyData);
+    fs.writeFileSync(__dirname + '/localdb_test/cliente.json', stringfyData);
 }
 
 const savePrestamos = (data) => {
     const stringfyData = JSON.stringify(data);
-    fs.writeFileSync('./localdb_test/prestamo.json', stringfyData);
+    fs.writeFileSync(__dirname + '/localdb_test/prestamo.json', stringfyData);
 }
 
 const savePagos = (data) => {
     const stringfyData = JSON.stringify(data);
-    fs.writeFileSync('./localdb_test/pago.json', stringfyData);
+    fs.writeFileSync(__dirname + '/localdb_test/pago.json', stringfyData);
 }
 
 

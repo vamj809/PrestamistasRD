@@ -5,18 +5,18 @@ const Cliente = {}
 
 Cliente.Create = async (req, res) => {
     try {
-        let res = await basecontroller.Create(URL_Params, req.body);
+        let response = await basecontroller.Create(URL_Params, req.body);
 
-        if(res.data.success){
+        if(response.data.success){
             res.redirect('/');
         } else{
             throw Error(res.data);
         }
-        return res;
+        return response;
 
     } catch(error) {
         console.log(error.message);
-        res.send("Error del servidor. Vuelva a intentarlo");
+        res.send("Error del servidor. Vuelva a intentarlo: " + error.message);
     }
 }
 

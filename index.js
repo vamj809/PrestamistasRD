@@ -67,5 +67,5 @@ app.post('/add-client', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log("Servidor corriendo en el puerto ", port);
+    console.log("Cliente corriendo en el puerto ", port);
 });
