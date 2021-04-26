@@ -102,3 +102,5 @@ dist
 
 # TernJS port file
 .tern-port
+views/partials/navbar.ejs
+views/dashboard.ejs

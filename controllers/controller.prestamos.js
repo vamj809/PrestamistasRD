@@ -4,7 +4,7 @@ const Prestamo = {}
 
 Prestamo.Create = async (req, res) => {
     try {
-            var _prestamo = {
+        var _prestamo = {
             idCliente: req.body.idCliente,
             monto: req.body.monto,
             cuotas: req.body.cuotas,
