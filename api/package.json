@@ -1,0 +1,26 @@
+{
+  "name": "prestamistas",
+  "version": "1.0.0",
+  "description": "PrestamistasRD API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vamj809/PrestamistasRD.git"
+  },
+  "keywords": [
+    "Prestamos"
+  ],
+  "author": "Grupo Prestamistas - Construccion Soft.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vamj809/PrestamistasRD/issues"
+  },
+  "homepage": "https://github.com/vamj809/PrestamistasRD#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "mongoose": "^5.12.5"
+  }
+}

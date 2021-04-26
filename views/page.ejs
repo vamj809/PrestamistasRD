@@ -37,13 +37,14 @@
 
 <body>
     <%- include("partials/header.ejs") %>
+        <p><%= username ? '¡Bienvenido/a ' + username + '!' : '' %></p>
         <div class="options">
             <a href="/add-client">Crear cliente</a>
             <a href="">Listar clientes</a>
             <a href="">Borrar cliente</a>
             <a href="">Crear préstamo</a>
             <a href="">Listar préstamos</a>
-            <a href="/">Cerrar sesión</a>
+            <a href="/logout">Cerrar sesión</a>
         </div>
 
 </body>
