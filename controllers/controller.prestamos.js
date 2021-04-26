@@ -1,7 +1,7 @@
 const model = require('../models/model.prestamos');
 const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Prestamos;
-const Prestamos = {}
+const Prestamo = {}
 
 Prestamo.Create = async function Create(prestamo){
     let res = await basecontroller.Create(URL_Params, prestamo);

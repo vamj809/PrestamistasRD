@@ -21,7 +21,7 @@ module.exports = {
     }),
     Read: (URL_Params,id) => config.ApiConsumer({
         method:"GET",
-        url: config.connectionString + URL_Params + '/id=' + id
+        url: config.connectionString + URL_Params + '/' + id
     }),
     ReadAll: (URL_Params) => config.ApiConsumer({
         method:"GET",
@@ -29,11 +29,11 @@ module.exports = {
     }),
     Update: (URL_Params,data) => config.ApiConsumer({
         method:"PUT",
-        url: config.connectionString + URL_Params + '/id=' + data._id, 
+        url: config.connectionString + URL_Params + '/' + data._id, 
         params: data
     }),
     Delete: (URL_Params,id) => config.ApiConsumer({
         method:"DELETE",
-        url: config.connectionString + URL_Params + '/id=' + id
+        url: config.connectionString + URL_Params + '/' + id
     })
 }

@@ -7,7 +7,7 @@ const app = express();
 //app.use(bodyParser.urlencoded({ extended: true }));
 
 //Inicio de Sesion
-const PrestamistasController = require('./controllers/controllers.prestamistas');
+const PrestamistasController = require('./controllers/controller.prestamistas');
 
 router.get("/", (req,res)=>{res.render("login.ejs");});
 router.post("/", PrestamistasController.Authenticate);

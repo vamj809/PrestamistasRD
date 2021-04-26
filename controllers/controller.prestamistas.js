@@ -3,17 +3,19 @@ const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Prestamista;
 const Prestamista = {}
 
-Prestamista.Authenticate = async function AuthenticateUser(req, res) {
-    console.log('Auth');
+Prestamista.Authenticate = async (req, res) => {
     try {
+        email = document.getElementById('email').innerText;
+        password = document.getElementById('password').innerText;
+
         let res = await basecontroller.Auth(URL_Params, {
-            user : req.body.email,
-            password: req.body.password
+            user : email,
+            password: password
         });
-    
+        
         return res;
     } catch(error) {
-        return res.status(500)({success: false, message: error.message});
+        console.log(res.status(500).json({success: false, message: error.message}));
     }
 }
 
@@ -63,3 +65,5 @@ Prestamista.Delete = async function Delete(id){
     
     return res;
 }
+
+module.exports = Prestamista;
