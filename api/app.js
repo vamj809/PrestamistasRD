@@ -86,14 +86,14 @@ const newPrestamista = new Prestamista(data1);
 // });
 
 const Cliente = mongoose.model('Cliente', ClienteSchema);
-const data2 = {
+/* const data2 = {
     id: "c10755",
     idPrestamista: "p0002",
     Nombre: "Pedro Rodriguez",
     Cedula: 001-7022589-5,
     Telefono: 829-914-0766,
     Endeudado: false
-}
+} */
 const newCliente = new Cliente(data2);
 // newCliente.save((error) => {
 //     if (error) {
@@ -114,7 +114,7 @@ const newCliente = new Cliente(data2);
 // });
 
 const Prestamo = mongoose.model('Prestamo', PrestamoSchema);
-const data3 = {
+/* const data3 = {
     id: "pr10544",
     idCliente: "c19314",
     Monto: 5000,
@@ -124,7 +124,7 @@ const data3 = {
     montoRestante: 0,
     fechaPrestamo: "20/12/2020",
     fechaLimite: "20/6/2021"
-}
+} */
 const newPrestamo = new Prestamo(data3);
 // newPrestamo.save((error) => {
 //     if (error) {
@@ -205,14 +205,14 @@ app.post('/prestamista/create', (req, res) => {
     res.send({success: true, msg: 'Prestamista Creado!'});
 
 })
-app.post('/cliente/create', (req, res) => {
+app.post('/add-client', (req, res) => {
     const clientes = req.body;
-    if(clientes.Nombre == "" || clientes.Cedula == "" || clientes.Telefono == "")
+    if(clientes.name === "" || clientes.cedula === "" || clientes.phone === "")
     {
         return (res.status(404).send({success: false, msg: 'You left fields empty, check again'}))
     }
     const cliente = getCliente();
-    const findExist = cliente.find(cli => cli.Nombre === clientes.Nombre || cli.Cedula === clientes.Cedula || cli.Telefono === clientes.Telefono);
+    const findExist = cliente.find(cli => cli.name === clientes.name || cli.cedula === clientes.cedula || cli.phone === clientes.phone);
     if(findExist)
     {
         return res.status(404).send({success: false, msg: 'Name, phone or social ID are already taken!'})
@@ -221,7 +221,8 @@ app.post('/cliente/create', (req, res) => {
     clientes.push(cliente);
     saveClientes(clientes);
     res.send({success: true, msg: 'Cliente Creado!'});
-})
+});
+
 app.post('/prestamo/create', (req, res) => {
     const prestamos = req.body;
     if(prestamos.idCliente == "" || prestamos.Monto == "" || prestamos.Cuotas == "" || prestamos.ValorCuotas == "" || prestamos.Interes == "" || prestamos.montoRestantes == "" || prestamos.fechaPrestamo == "" || prestamos.fechaLimite == "")
@@ -417,6 +418,6 @@ const savePagos = (data) => {
 
 
 //configure the server port
-app.listen(2800, () => {
+/* app.listen(2800, () => {
     console.log('Server is running on port 2800')
-})
+}) */
