@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Prestamos</title>
+</head>
+<style>
+    body{
+        padding: 0;
+        margin: 0;
+    }
+    .loan{
+        background-color: #063950;
+        border-radius: 30px;
+        margin: 10px auto;
+    }
+</style>
+<body>
+    <%- include("partials/header.ejs") %>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="9"><h4><strong>Listado de Prestamos</strong></h4></th>
+            </tr>
+            <tr>
+                <th><strong>ID</strong></th>
+                <th><strong>IdCliente</strong></th>
+                <th><strong>Monto</strong></th>
+                <th><strong>Cuotas</strong></th>
+                <th><strong>ValorCuotas</strong></th>
+                <th><strong>Interes</strong></th>
+                <th><strong>MontoRestante</strong></th>
+                <th><strong>Fecha de Prestamo</strong></th>
+                <th><strong>Fecha Limite</strong></th>
+            </tr>
+        </thead>
+        <tbody id="listado">
+            <tr>
+                <td colspan="9" style="text-align: center">No se han registrado préstamos.</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function LoadClients(){
+        console.log('open');
+        const listado = document.querySelector("#listado");
+        const MiArreglo = <%-JSON.stringify(ListaPrestamos)%>;
+        if(MiArreglo.length > 0){
+            listado.innerHTML = '';
+            MiArreglo.forEach(cliente => {
+                const row = document.createElement('tr');
+
+                let id = document.createElement('td');
+                id.innerText = cliente.id
+                row.appendChild(id);
+
+                let idCliente = document.createElement('td');
+                idCliente.innerText = cliente.idCliente
+                row.appendChild(idCliente);
+
+                let Monto = document.createElement('td');
+                Monto.innerText = cliente.Monto
+                row.appendChild(Monto);
+                
+                let Cuotas = document.createElement('td');
+                Cuotas.innerText = cliente.Cuotas
+                row.appendChild(Cuotas);
+                
+                let ValorCuotas = document.createElement('td');
+                ValorCuotas.innerText = cliente.ValorCuotas
+                row.appendChild(ValorCuotas);
+                
+                let Interes = document.createElement('td');
+                Interes.innerText = cliente.Interes
+                row.appendChild(Interes);
+                
+                let montoRestante = document.createElement('td');
+                montoRestante.innerText = cliente.montoRestante
+                row.appendChild(montoRestante);
+                
+                let fechaPrestamo = document.createElement('td');
+                fechaPrestamo.innerText = cliente.fechaPrestamo
+                row.appendChild(fechaPrestamo);
+                
+                let fechaLimite = document.createElement('td');
+                fechaLimite.innerText = cliente.fechaLimite
+                row.appendChild(fechaLimite);
+
+                listado.appendChild(row);
+            });
+        }
+    });
+</script>
+</html>

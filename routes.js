@@ -62,6 +62,9 @@ router.get("/list-clients", async (req, res) => {
 
 //Prestamos
 router.get("/add-loan", (req, res) => { res.render("add-loan.ejs"); });
+router.get("/list-loans", async (req, res) => {
+    let ListaPrestamos = await PrestamosController.GetAll();
+    res.render("list-loans.ejs", {ListaPrestamos: ListaPrestamos}); });
 
 module.exports = sess;
 module.exports = router;

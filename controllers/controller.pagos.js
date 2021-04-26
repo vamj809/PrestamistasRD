@@ -13,9 +13,9 @@ Pago.Create = async function Create(pago){
 // }
 
 
-Pago.GetAll = async function GetAll(){
-    let res = await basecontroller.ReadAll(URL_Params);
-    return res;
+Pago.GetAll = async (req, res) => {
+    let response = await basecontroller.ReadAll(URL_Params);
+    return response.data;
 }
 
 Pago.Update = async function Update(pago){

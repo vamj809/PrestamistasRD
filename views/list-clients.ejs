@@ -35,7 +35,7 @@
         </thead>
         <tbody id="listado">
             <tr>
-                <td colspan="5" style="text-align: center">No se han registrado préstamos.</td>
+                <td colspan="5" style="text-align: center">No se han registrado clientes.</td>
             </tr>
         </tbody>
     </table>
@@ -45,9 +45,8 @@
         console.log('open');
         const listado = document.querySelector("#listado");
         const MiArreglo = <%-JSON.stringify(ListaClientes)%>;
-        console.log(MiArreglo);
         if(MiArreglo.length > 0){
-            console.log('I HAVE DATA');
+            
             listado.innerHTML = '';
             MiArreglo.forEach(cliente => {
                 const row = document.createElement('tr');
