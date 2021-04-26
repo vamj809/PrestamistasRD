@@ -52,7 +52,7 @@ input[type=email],input[type=password],input[type="text"]{
     text-decoration: none;
     display: inline-block;
 }
-.error{
+.error {
     color: red;
     visibility: hidden;
 }

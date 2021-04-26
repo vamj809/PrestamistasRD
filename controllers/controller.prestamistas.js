@@ -7,15 +7,22 @@ Prestamista.Authenticate = async (req, res) => {
     try {
         email = document.getElementById('email').innerText;
         password = document.getElementById('password').innerText;
+        errorField = document.getElementsByClassName('error')[0];
 
         let res = await basecontroller.Auth(URL_Params, {
             user : email,
             password: password
         });
         
-        return res;
+        if(res.json.success == true){
+            res.redirect('/dashboard');
+        } else {
+            errorField.innerText = "Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez";
+        }
+
     } catch(error) {
-        console.log(res.status(500).json({success: false, message: error.message}));
+        errorField.innerText = "Error del servidor. Vuelva a intentarlo";
+        console.log(error.message);
     }
 }
 
