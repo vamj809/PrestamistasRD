@@ -1,6 +1,6 @@
 const port = 3000;
 const express = require("express");
-const mongoose = require("mongoose");
+/*const mongoose = require("mongoose");*/
 const routes = require("./routes");
 const app = express();
 
@@ -16,7 +16,7 @@ app.use('/public', express.static('views/public'));
 
 //usar rutas
 app.use(routes);
-
+/* ------ DEPRECADO CAUSA CONFLICTO CON REQUESTS/RESPONSES
 //MONGODB CONFIG
 const MONGODB_URI = "mongodb+srv://loaner:prestamistasrd@myvmcluster.tec0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/2800', {
@@ -65,7 +65,7 @@ app.post('/add-client', (req, res) => {
         mng: mng
     });
 });
-
+*/
 app.listen(port, () => {
     console.log("Cliente corriendo en el puerto ", port);
 });
