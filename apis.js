@@ -1,3 +1,5 @@
+/* ------- DEPRECATED --------------
+
 const express=require("express");
 const mongoose = require('mongoose');
 const app=express();
@@ -75,3 +77,5 @@ app.post('/add-client', (req, res) => {
         mng:"Cliete creado exitosamente."
     });
 });
+
+*/

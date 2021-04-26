@@ -1,11 +1,10 @@
-const { response } = require('express');
-const model = require('../models/model.prestamistas');
 const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Prestamista;
 const Prestamista = {}
 
 Prestamista.Authenticate = async (req, res) => {
     try {
+        var sess = req.session;
         var email = req.body.email;
         var password = req.body.password;
 
@@ -13,7 +12,7 @@ Prestamista.Authenticate = async (req, res) => {
         var getResult = RequestData.data.find(obj => obj.email == email && obj.passwordSalt == password);
 
         if(getResult){
-            req.session.userid = getResult._id;
+            sess.userid = getResult.id;
             res.redirect('/page');
         } else {
             res.send("Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez");

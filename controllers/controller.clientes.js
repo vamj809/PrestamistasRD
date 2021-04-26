@@ -5,8 +5,9 @@ const Cliente = {}
 
 Cliente.Create = async (req, res) => {
     try {
+        var sess = req.session;
         var _cliente = {
-            idPrestamista : req.session.userid,
+            idPrestamista : sess.userid,
             Nombre : req.body.name,
             Cedula : req.body.cedula,
             Telefono: req.body.phone,
@@ -15,7 +16,7 @@ Cliente.Create = async (req, res) => {
         let response = await basecontroller.Create(URL_Params, _cliente);
 
         if(response.data.success){
-            res.redirect('/');
+            res.redirect('/page');
         } else{
             throw Error(res.data);
         }

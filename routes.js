@@ -55,5 +55,5 @@ router.get("/success", (req, res) => {res.render("success.ejs");});
 router.get("/add-client", (req, res) => {res.render("add-client.ejs");});
 router.post("/add-client", ClientesController.Create);
 
-module.exports = router;
 module.exports = sess;
+module.exports = router;
