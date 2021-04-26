@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+const express = require('express');
+const app = express();
 
 //MONGODB CONFIG
 const MONGODB_URI = "mongodb+srv://loaner:prestamistasrd@myvmcluster.tec0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
