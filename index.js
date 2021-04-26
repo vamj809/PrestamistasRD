@@ -14,7 +14,6 @@ app.use('/public', express.static('views/public'));
 //usar rutas
 app.use(routes);
 
-<<<<<<< HEAD
 //MONGODB CONFIG
 const MONGODB_URI = "mongodb+srv://loaner:1234@myvmcluster.tec0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/2800', {
@@ -64,8 +63,6 @@ app.post('/add-client', (req, res) => {
     });
 });
 
-=======
->>>>>>> 3ce11062e81b8bfdfd5bb757f8174a705126742b
 app.listen(port, () => {
     console.log("Servidor corriendo en el puerto ", port);
 });
