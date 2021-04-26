@@ -55,6 +55,7 @@ router.get("/success", (req, res) => { res.render("success.ejs"); });
 //Operaciones del Cliente
 router.get("/add-client", (req, res) => { res.render("add-client.ejs"); });
 router.get("/list-clients", (req, res) => { res.render("list-clients.ejs"); });
+router.get("/add-loan", (req, res) => { res.render("add-loan.ejs"); });
 router.post("/add-client", ClientesController.Create);
 
 module.exports = sess;
