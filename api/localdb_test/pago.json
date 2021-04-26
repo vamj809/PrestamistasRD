@@ -1,0 +1,26 @@
+[
+    {
+        "id" : "pa11049",
+        "idPrestamo" : "pr10544",
+        "Monto" : 1000,
+        "fechaPago" : "20/12/2020"
+    },
+    {
+        "id" : "pa13826",
+        "idPrestamo" : "pr15279",
+        "Monto" : 1500,
+        "fechaPago" : "10/12/2020"
+    },
+    {
+        "id" : "pa17558",
+        "idPrestamo" : "pr11376",
+        "Monto" : 3500,
+        "fechaPago" : "26/10/2020"
+    },
+    {
+        "id" : "pa10645",
+        "idPrestamo" : "pr29661",
+        "Monto" : 750,
+        "fechaPago" : "15/12/2020"
+    }
+]

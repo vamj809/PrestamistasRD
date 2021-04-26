@@ -5,9 +5,11 @@ const Prestamista = {}
 
 Prestamista.Authenticate = async (req, res) => {
     try {
-        email = document.getElementById('email').innerText;
-        password = document.getElementById('password').innerText;
-        errorField = document.getElementById('servermsg');
+        var email = req.body.email;
+        var password = req.body.password;
+        //var email = document.getElementById('email').innerText;
+        //var password = document.getElementById('password').innerText;
+        //var errorField = document.getElementById('servermsg');
 
         res = await basecontroller.Auth(URL_Params, {
             user : email,
@@ -20,7 +22,7 @@ Prestamista.Authenticate = async (req, res) => {
             errorField.style.visibility = "visible";
             errorField.innerText = "Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez";
         }
-
+        
     } catch(error) {
         console.log(error.message);
         errorField.style.visibility = "visible";

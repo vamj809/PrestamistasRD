@@ -4,10 +4,10 @@ const config = require('../config/api.config');
 //Abstracción de los métodos de consumo de la API para facilitar la extensión de las operaciones.
 module.exports = {
     URL: {
-        Prestamista: '/Prestamistas',
-        Clientes: '/Clientes',
-        Prestamos: '/Prestamos',
-        Pagos: '/Pagos'
+        Prestamista: '/prestamista',
+        Clientes: '/cliente',
+        Prestamos: '/prestamo',
+        Pagos: '/pago'
     },
     Auth: (URL_Params,data) => config.ApiConsumer({
         method:"POST",
@@ -29,11 +29,11 @@ module.exports = {
     }),
     Update: (URL_Params,data) => config.ApiConsumer({
         method:"PUT",
-        url: config.connectionString + URL_Params + '/' + data._id, 
+        url: config.connectionString + URL_Params + '/update', 
         params: data
     }),
     Delete: (URL_Params,id) => config.ApiConsumer({
         method:"DELETE",
-        url: config.connectionString + URL_Params + '/' + id
+        url: config.connectionString + URL_Params + '/delete' + id
     })
 }

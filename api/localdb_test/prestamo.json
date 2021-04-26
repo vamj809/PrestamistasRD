@@ -1,0 +1,46 @@
+[
+    {
+        "id" : "pr10544",
+        "idCliente" : "c19314",
+        "Monto" : 5000,
+        "Cuotas" : 5,
+        "ValorCuotas" : 1000,
+        "Interes" : 0.5,
+        "montoRestante" : null,
+        "fechaPrestamo" : "20/12/2020",
+        "fechaLimite" : "20/6/2021"
+    },
+    {
+        "id" : "pr11376",
+        "idCliente" : "c10755",
+        "Monto" : 7390,
+        "Cuotas" : 8,
+        "ValorCuotas" : 3500,
+        "Interes" : 3.5,
+        "montoRestante" : 15000,
+        "fechaPrestamo" : "26/10/2020",
+        "fechaLimite" : "15/6/2021"
+    },
+    {
+        "id" : "pr29661",
+        "idCliente" : "c16709",
+        "Monto" : 1275,
+        "Cuotas" : 6,
+        "ValorCuotas" : 750,
+        "Interes" : 1.2,
+        "montoRestante" : 5499,
+        "fechaPrestamo" : "15/12/2020",
+        "fechaLimite" : "25/7/2021"
+    },
+    {
+        "id" : "pr15279",
+        "idCliente" : "c18581",
+        "Monto" : 2530,
+        "Cuotas" : 10,
+        "ValorCuotas" : 1500,
+        "Interes" : 0.08,
+        "montoRestante" : 12530,
+        "fechaPrestamo" : "10/12/2020",
+        "fechaLimite" : "5/11/2021"
+    }
+]

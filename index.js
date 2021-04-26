@@ -18,5 +18,9 @@ app.listen(port, () => {
     console.log("Servidor corriendo en el puerto ", port);
 });
 
+//Establecer formato de requests y responses.
+app.use(express.json())
+app.use(express.urlencoded({extended : false}))
+
 //Reutilizar constante para otros módulos.
 exports.app = app;

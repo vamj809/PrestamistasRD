@@ -3,8 +3,9 @@ const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Clientes;
 const Cliente = {}
 
-Cliente.Create = async function Create(cliente){
-    let res = await basecontroller.Create(URL_Params, cliente);
+Cliente.Create = async (req, res) => {
+    let res = await basecontroller.Create(URL_Params, req.body);
+    
     return res;
 }
 
