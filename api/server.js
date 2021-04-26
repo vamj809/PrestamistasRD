@@ -9,9 +9,10 @@ const app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended : false}))
 const url = require('url');
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+//////////////////////////////////////////////////////////////////
+/////////////////////  CREATE - POST Methods /////////////////////
+//////////////////////////////////////////////////////////////////
 
 app.post('/prestamista/create', (req, res) => {
     //If request comes in Json get Json else get request from URL
@@ -99,6 +100,10 @@ app.post('/pago/create', (req, res) => {
     res.send({success: true, message: 'Pago Creado!'});
 })
 
+//////////////////////////////////////////////////////////////////
+/////////////////////  UPDATE - PATCH Methods ////////////////////
+//////////////////////////////////////////////////////////////////
+
 app.patch('/prestamista/update', (req, res) => {
     const userName = req.body.userName;
     const displayName = req.body;
@@ -152,6 +157,10 @@ app.patch('/pago/update', (req, res) => {
     res.send({success: true, message: 'Pago ha sido actualizado.'});
 })
 
+//////////////////////////////////////////////////////////////////
+/////////////////////////  DELETE Methods ////////////////////////
+//////////////////////////////////////////////////////////////////
+
 app.delete('/prestamista/delete', (req, res) => {
     const userName = req.body.userName;
     const prestamista = getPrestamistas();
@@ -197,45 +206,56 @@ app.delete('/pago/delete', (req, res) => {
     res.send({success: true, message: "pago eliminado satisfactoriamente!"})
 })
 
+//////////////////////////////////////////////////////////////////
+////////////////////////  GET ALL Methods ////////////////////////
+//////////////////////////////////////////////////////////////////
+
 app.get('/prestamista/list', (req, res) => {
     const prestamista = getPrestamistas();
     res.send(prestamista);
 })
-
-const getPrestamistas = (data) => {
-    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamista.json');
-    return JSON.parse(jsonData)
-}
 
 app.get('/cliente/list', (req, res) => {
     const cliente = getCliente();
     res.send(cliente);
 })
 
-const getCliente = (data) => {
-    const jsonData = fs.readFileSync(__dirname + '/localdb_test/cliente.json');
-    return JSON.parse(jsonData)
-}
-
 app.get('/prestamo/list', (req, res) => {
     const prestamo = getPrestamo();
     res.send(prestamo);
 })
-
-const getPrestamo = (data) => {
-    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamo.json');
-    return JSON.parse(jsonData)
-}
 
 app.get('/pago/list', (req, res) => {
     const pago = getPago();
     res.send(prestamo);
 })
 
+//////////////////////////////////////////////////////////////////
+/////////////////////  GET DATA FUNCTIONS  ///////////////////////
+//////////////////////////////////////////////////////////////////
+
+const getPrestamistas = (data) => {
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamista.json');
+    return JSON.parse(jsonData)
+}
+const getCliente = (data) => {
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/cliente.json');
+    return JSON.parse(jsonData)
+}
+
+const getPrestamo = (data) => {
+    const jsonData = fs.readFileSync(__dirname + '/localdb_test/prestamo.json');
+    return JSON.parse(jsonData)
+}
+
 const getPago = (data) => {
     const jsonData = fs.readFileSync(__dirname + '/localdb_test/pago.json');
     return JSON.parse(jsonData)
 }
+
+//////////////////////////////////////////////////////////////////
+////////////////////  SAVE DATA FUNCTIONS  ///////////////////////
+//////////////////////////////////////////////////////////////////
 
 const savePrestamistas = (data) => {
     const stringfyData = JSON.stringify(data);
@@ -256,6 +276,10 @@ const savePagos = (data) => {
     const stringfyData = JSON.stringify(data);
     fs.writeFileSync(__dirname + '/localdb_test/pago.json', stringfyData);
 }
+
+//////////////////////////////////////////////////////////////////
+///////////////////  SERVER CONFIGURATION  ///////////////////////
+//////////////////////////////////////////////////////////////////
 
 //configure the server port
 app.listen(2800, () => {
