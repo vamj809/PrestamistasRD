@@ -1,1 +1,60 @@
-[{"userName":"vMontero","displayName":"Victor Montero","email":"1067196@est.intec.edu.do","passwordHash":"admin202101","passwordSalt":"vicmont0001","fechaUltimoAcceso":"23/03/2021","fechaCreacion":"15/03/2020","intentosFallidos":0},{"userName":"vamj809","displayName":"Vladimir Diaz","email":"vladimirfranciscodiaz@gmail.com","passwordHash":"admin202102","passwordSalt":"vladdiaz0002","fechaUltimoAcceso":"15/03/2021","fechaCreacion":"04/05/2020","intentosFallidos":2},{"userName":"BartMas","displayName":"Bartomeu Mas","email":"bartomeumas00@gmail.com","passwordHash":"admin202103","passwordSalt":"bartmas0003","fechaUltimoAcceso":"1/04/2021","fechaCreacion":"04/01/2020","intentosFallidos":1},{"userName":"JhoRay","displayName":"Jhonatan Sanchez","email":"1076689@est.intec.edu.do","passwordHash":"admin202104","passwordSalt":"jhoray0004","fechaUltimoAcceso":"13/04/2021","fechaCreacion":"12/01/2020","intentosFallidos":1},{"userName":"kMiliano","displayName":"Kimberly Miliano","email":"1074417@est.intec.edu.do","passwordHash":"admin202105","passwordSalt":"kimmil0005","fechaUltimoAcceso":"27/03/2021","fechaCreacion":"26/09/2020","intentosFallidos":2},{"username":"freddiesoto@aol.es","displayname":"Sotoyev, Frederich","email":"freddiesoto@aol.es","passwordHash":"demo","passwordSalt":"1234","id":"knyej0o3dj0lq5xvik"}]
+[
+    {
+        "userName": "vMontero",
+        "displayName": "Victor Montero",
+        "email": "1067196@est.intec.edu.do",
+        "passwordHash": "admin202101",
+        "passwordSalt": "vicmont0001",
+        "fechaUltimoAcceso": "23/03/2021",
+        "fechaCreacion": "15/03/2020",
+        "intentosFallidos": 0
+    },
+    {
+        "userName": "vamj809",
+        "displayName": "Vladimir Diaz",
+        "email": "vladimirfranciscodiaz@gmail.com",
+        "passwordHash": "admin202102",
+        "passwordSalt": "vladdiaz0002",
+        "fechaUltimoAcceso": "15/03/2021",
+        "fechaCreacion": "04/05/2020",
+        "intentosFallidos": 2
+    },
+    {
+        "userName": "BartMas",
+        "displayName": "Bartomeu Mas",
+        "email": "bartomeumas00@gmail.com",
+        "passwordHash": "admin202103",
+        "passwordSalt": "bartmas0003",
+        "fechaUltimoAcceso": "1/04/2021",
+        "fechaCreacion": "04/01/2020",
+        "intentosFallidos": 1
+    },
+    {
+        "userName": "JhoRay",
+        "displayName": "Jhonatan Sanchez",
+        "email": "1076689@est.intec.edu.do",
+        "passwordHash": "admin202104",
+        "passwordSalt": "jhoray0004",
+        "fechaUltimoAcceso": "13/04/2021",
+        "fechaCreacion": "12/01/2020",
+        "intentosFallidos": 1
+    },
+    {
+        "userName": "kMiliano",
+        "displayName": "Kimberly Miliano",
+        "email": "1074417@est.intec.edu.do",
+        "passwordHash": "admin202105",
+        "passwordSalt": "kimmil0005",
+        "fechaUltimoAcceso": "27/03/2021",
+        "fechaCreacion": "26/09/2020",
+        "intentosFallidos": 2
+    },
+    {
+        "username": "freddiesoto@aol.es",
+        "displayname": "Sotoyev, Frederich",
+        "email": "freddiesoto@aol.es",
+        "passwordHash": "demo",
+        "passwordSalt": "1234",
+        "id": "knyej0o3dj0lq5xvik"
+    }
+]

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Agregar préstamo</title>
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -16,7 +16,7 @@
             margin-top: 30px;
             margin-left: 30px;
         }
-        .form input[type=text]{
+        .form input[type=text],input[type=number]{
             font-size: 1.3em;
         }
         .btn{
@@ -36,23 +36,28 @@
 
 <body>
     <%- include("partials/header.ejs") %>
-        <form action="/add-client" method="POST" class="form">
+        <form action="/add-loan" method="POST" class="form">
             <div>
-                <label for="name">Nombre:</label>
-                <input type="text" placeholder="Nombre" name="name" required>
+                <label for="clientId">Id del cliente:</label>
+                <input type="text" placeholder="Id del cliente" name="clientId" required>
             </div>
             <br>
             <div>
-                <label for="cedula">Cédula:</label>
-                <input type="text" placeholder="Cédula" name="cedula" required>
+                <label for="amount">Monto:</label>
+                <input type="number" placeholder="Monto" name="amount" required>
             </div>
             <br>
             <div>
-                <label for="phone">Teléfono:</label>
-                <input type="text" placeholder="Teléfono" name="phone" required>
+                <label for="quotesQty">Cantidad de cuotas:</label>
+                <input type="text" placeholder="Cantidad de cuotas" name="quotesQty" required>
             </div>
             <br>
-            <input type="submit" value="Agregar cliente" class="btn">
+            <div>
+                <label">Interes:</label>
+                <input style="width: 100px;" type="number" min="0" max="1" placeholder="Interes" name="interest" required>
+            </div>
+            <br>
+            <input type="submit" value="Agregar préstamo" class="btn">
         </form>
         <%- include("partials/return-to-page.ejs") %>
 </body>
