@@ -1,3 +1,4 @@
+const { response } = require('express');
 const model = require('../models/model.prestamistas');
 const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Prestamista;
@@ -7,26 +8,19 @@ Prestamista.Authenticate = async (req, res) => {
     try {
         var email = req.body.email;
         var password = req.body.password;
-        //var email = document.getElementById('email').innerText;
-        //var password = document.getElementById('password').innerText;
-        //var errorField = document.getElementById('servermsg');
 
-        res = await basecontroller.Auth(URL_Params, {
-            user : email,
-            password: password
-        });
-        
-        if(res.json.success == true){
-            res.redirect('/dashboard');
+        RequestData = await Prestamista.GetAll();
+        var getResult = RequestData.data.find(obj => obj.email == email && obj.passwordSalt == password);
+
+        if(getResult){
+            res.redirect('/page');
         } else {
-            errorField.style.visibility = "visible";
-            errorField.innerText = "Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez";
+            res.send("Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez");
         }
-        
+
     } catch(error) {
         console.log(error.message);
-        errorField.style.visibility = "visible";
-        errorField.innerText = "Error del servidor. Vuelva a intentarlo";
+        res.send("Error del servidor. Vuelva a intentarlo");
     }
 }
 
@@ -36,6 +30,15 @@ Prestamista.Create = async function Create(name, lastname, email, password){
         email: email,
         password: password
     });
+
+    console.log(res.status);
+    console.log(res.data);
+    
+    return res;
+}
+
+Prestamista.GetAll = async function GetAll(){
+    let res = await basecontroller.ReadAll(URL_Params);
 
     console.log(res.status);
     console.log(res.data);
