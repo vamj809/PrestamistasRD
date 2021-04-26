@@ -33,8 +33,8 @@ Cliente.Create = async (req, res) => {
 // }
 
 Cliente.GetAll = async (req, res) => {
-    let result = await basecontroller.ReadAll(URL_Params);
-    return result.data;
+    let response = await basecontroller.ReadAll(URL_Params);
+    return response.data;
 }
 
 Cliente.Update = async function Update(cliente){

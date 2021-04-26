@@ -54,9 +54,14 @@ router.get("/success", (req, res) => { res.render("success.ejs"); });
 
 //Operaciones del Cliente
 router.get("/add-client", (req, res) => { res.render("add-client.ejs"); });
-router.get("/list-clients", (req, res) => { res.render("list-clients.ejs"); });
-router.get("/add-loan", (req, res) => { res.render("add-loan.ejs"); });
 router.post("/add-client", ClientesController.Create);
+
+router.get("/list-clients", async (req, res) => {
+    let ListaClientes = await ClientesController.GetAll();
+    res.render("list-clients.ejs", {ListaClientes: ListaClientes}); });
+
+//Prestamos
+router.get("/add-loan", (req, res) => { res.render("add-loan.ejs"); });
 
 module.exports = sess;
 module.exports = router;

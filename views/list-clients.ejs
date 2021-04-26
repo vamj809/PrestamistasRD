@@ -20,13 +20,65 @@
 </style>
 <body>
     <%- include("partials/header.ejs") %>
-    <% if(clientList.length===0) {%>
-        <h1>No hay clientes que mostrar</h1>
-    <% } else{%>
-        <% for(let i=0; i< clientList.length;i++){ %>
-            <div class="client"><%= clientList[i].name %> </div> 
-            <% }} %> 
-        
+    <table>
+        <thead>
+            <tr>
+                <th colspan="5"><h4><strong>Listado de Clientes</strong></h4></th>
+            </tr>
+            <tr>
+                <th><strong>ID</strong></th>
+                <th><strong>Nombres</strong></th>
+                <th><strong>Cedula</strong></th>
+                <th><strong>Telefono</strong></th>
+                <th><strong>Endeudado</strong></th>
+            </tr>
+        </thead>
+        <tbody id="listado">
+            <tr>
+                <td colspan="5" style="text-align: center">No se han registrado préstamos.</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function LoadClients(){
+        console.log('open');
+        const listado = document.querySelector("#listado");
+        const MiArreglo = <%-JSON.stringify(ListaClientes)%>;
+        console.log(MiArreglo);
+        if(MiArreglo.length > 0){
+            console.log('I HAVE DATA');
+            listado.innerHTML = '';
+            MiArreglo.forEach(cliente => {
+                const row = document.createElement('tr');
 
+                let id = document.createElement('td');
+                id.innerText = cliente.id
+                row.appendChild(id);
+
+                let nombre = document.createElement('td');
+                nombre.innerText = cliente.Nombre
+                row.appendChild(nombre);
+
+                let cedula = document.createElement('td');
+                cedula.innerText = cliente.Cedula
+                row.appendChild(cedula);
+
+                let telefono = document.createElement('td');
+                telefono.innerText = cliente.Telefono
+                row.appendChild(telefono);
+
+                let endeudado = document.createElement('td');
+                if(cliente.Endeudado){
+                    endeudado.innerText = 'SI';
+                } else {
+                    endeudado.innerText = '';
+                }
+                row.appendChild(endeudado);
+
+                listado.appendChild(row);
+            });
+        }
+    });
+</script>
 </html>
