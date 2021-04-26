@@ -29,7 +29,7 @@ router.post("/", (req, res) => {
 
 //Registrar Usuario
 router.get("/register-page", (req, res) => { res.render("register-page.ejs"); });
-router.post("/register-page", PrestamistasController.Create);
+router.post("/register-page", (req, res) => {PrestamistasController.Create(req,res)});
 
 //Menu Principal [Page]
 router.get("/page", (req, res) => {
@@ -54,7 +54,7 @@ router.get("/success", (req, res) => { res.render("success.ejs"); });
 
 //Operaciones del Cliente
 router.get("/add-client", (req, res) => { res.render("add-client.ejs"); });
-router.post("/add-client", ClientesController.Create);
+router.post("/add-client", (req, res) => {ClientesController.Create(req,res)});
 
 router.get("/list-clients", async (req, res) => {
     let ListaClientes = await ClientesController.GetAll();
@@ -62,7 +62,7 @@ router.get("/list-clients", async (req, res) => {
 
 //Prestamos
 router.get("/add-loan", (req, res) => { res.render("add-loan.ejs"); });
-router.get("/add-loan", PrestamosController.Create);
+router.get("/add-loan", (req, res) => {PrestamosController.Create(req,res)});
 router.get("/list-loans", async (req, res) => {
     let ListaPrestamos = await PrestamosController.GetAll();
     res.render("list-loans.ejs", {ListaPrestamos: ListaPrestamos}); });

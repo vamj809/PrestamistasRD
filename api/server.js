@@ -26,7 +26,7 @@ app.post('/prestamista/create', (req, res) => {
     }
     //verify if prestamista exist
     const ListaPrestamistas = getPrestamistas();
-    const findExist = ListaPrestamistas.find(prest => prest.userName === prestamista.userName || prest.displayName === prestamista.displayName || prest.email === prestamista.email);
+    const findExist = ListaPrestamistas.find(prest => prest.userName === prestamista.userName && prest.displayName === prestamista.displayName && prest.email === prestamista.email);
     if(findExist)
     {
         console.log('Username, displayName or email are already taken!');
