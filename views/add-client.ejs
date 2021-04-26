@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .form{
+            margin-top: 30px;
+            margin-left: 30px;
+        }
+        .form input[type=text]{
+            font-size: 1.3em;
+        }
+        .btn{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #063950;
+            border-radius: 20px;
+            color:white;
+            border:none;
+            cursor: pointer;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("partials/header.ejs") %>
+        <form action="" method="POST" class="form">
+            <div>
+                <label for="name">Nombre:</label>
+                <input type="text" placeholder="Nombre" name="name" required>
+            </div>
+            <br>
+            <div>
+                <label for="cedula">Cédula:</label>
+                <input type="text" placeholder="Cédula" name="cedula" required>
+            </div>
+            <br>
+            <div>
+                <label for="name">Teléfono:</label>
+                <input type="text" placeholder="Teléfono" name="phone" required>
+            </div>
+            <br>
+            <input type="submit" value="Agregar cliente" class="btn">
+        </form>
+        <%- include("partials/return-to-page.ejs") %>
+</body>
+
+</html>

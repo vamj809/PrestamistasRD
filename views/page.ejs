@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página principal</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .options {
+            margin: 50px auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            width: 80%;
+        }
+        .options>*{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 40px;
+            height: 100px;
+            background-color: #063950;
+            border-radius: 50px;
+            text-decoration: none;
+            text-align: center;
+            color:white;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <%- include("partials/header.ejs") %>
+        <div class="options">
+            <a href="/add-client">Crear cliente</a>
+            <a href="">Listar clientes</a>
+            <a href="">Borrar cliente</a>
+            <a href="">Crear préstamo</a>
+            <a href="">Listar préstamos</a>
+            <a href="">Cerrar sesión</a>
+        </div>
+
+</body>
+
+</html>
