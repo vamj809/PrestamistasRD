@@ -214,12 +214,12 @@ app.post('/add-client', (req, res) => {
     //If request comes in Json get Json else get request from URL
     const cliente = url.parse(req.url,true).query ? url.parse(req.url,true).query : req.body;
     
-    if(cliente.name === "" || cliente.cedula === "" || cliente.phone === "")
+    if(cliente.Nombre === "" || cliente.Cedula === "" || cliente.Telefono === "")
     {
         return (res.status(404).send({success: false, message: 'You left fields empty, check again'}))
     }
     const ListaClientes = getCliente();
-    const findExist = ListaClientes.find(cli => cli.name === cliente.name || cli.cedula === cliente.cedula || cli.phone === cliente.phone);
+    const findExist = ListaClientes.find(cli => cli.Nombre === cliente.Nombre && cli.Cedula === cliente.Cedula && cli.Telefono === cliente.Telefono);
     if(findExist)
     {
         return res.status(404).send({success: false, message: 'Name, phone or social ID are already taken!'})

@@ -5,7 +5,14 @@ const Cliente = {}
 
 Cliente.Create = async (req, res) => {
     try {
-        let response = await basecontroller.Create(URL_Params, req.body);
+        var _cliente = {
+            idPrestamista : req.session.userid,
+            Nombre : req.body.name,
+            Cedula : req.body.cedula,
+            Telefono: req.body.phone,
+            Endeudado : false
+        }
+        let response = await basecontroller.Create(URL_Params, _cliente);
 
         if(response.data.success){
             res.redirect('/');
@@ -20,10 +27,10 @@ Cliente.Create = async (req, res) => {
     }
 }
 
-Cliente.Get = async function Get(id){
-    let res = await basecontroller.Read(URL_Params, id);
-    return res;
-}
+// Cliente.Get = async function Get(id){
+//     let res = await basecontroller.Read(URL_Params, id);
+//     return res;
+// }
 
 Cliente.GetAll = async function GetAll(){
     let res = await basecontroller.ReadAll(URL_Params);

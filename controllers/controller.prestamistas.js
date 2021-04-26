@@ -13,6 +13,7 @@ Prestamista.Authenticate = async (req, res) => {
         var getResult = RequestData.data.find(obj => obj.email == email && obj.passwordSalt == password);
 
         if(getResult){
+            req.session.userid = getResult._id;
             res.redirect('/page');
         } else {
             res.send("Usuario y/o contraseña incorrecta. Vuelva a intentarlo otra vez");
@@ -52,14 +53,14 @@ Prestamista.GetAll = async function GetAll(){
     return res;
 }
 
-Prestamista.Get = async function Get(id){
-    let res = await basecontroller.Read(URL_Params, id);
+// Prestamista.Get = async function Get(id){
+//     let res = await basecontroller.Read(URL_Params, id);
 
-    console.log(res.status);
-    console.log(res.data);
+//     console.log(res.status);
+//     console.log(res.data);
     
-    return res;
-}
+//     return res;
+// }
 
 Prestamista.Update = async function Update(prestamista){
     let res = await basecontroller.Update(URL_Params, {

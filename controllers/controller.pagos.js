@@ -8,10 +8,10 @@ Pago.Create = async function Create(pago){
     return res;
 }
 
-Pago.Get = async function Get(id){
-    let res = await basecontroller.Read(URL_Params, id);
-    return res;
-}
+// Pago.Get = async function Get(id){
+//     let res = await basecontroller.Read(URL_Params, id);
+//     return res;
+// }
 
 
 Pago.GetAll = async function GetAll(){

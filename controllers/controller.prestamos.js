@@ -8,10 +8,10 @@ Prestamo.Create = async function Create(prestamo){
     return res;
 }
 
-Prestamo.Get = async function Get(id){
-    let res = await basecontroller.Read(URL_Params, id);
-    return res;
-}
+// Prestamo.Get = async function Get(id){
+//     let res = await basecontroller.Read(URL_Params, id);
+//     return res;
+// }
 
 
 Prestamo.GetAll = async function GetAll(){
