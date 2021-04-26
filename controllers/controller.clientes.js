@@ -4,9 +4,20 @@ const URL_Params = basecontroller.URL.Clientes;
 const Cliente = {}
 
 Cliente.Create = async (req, res) => {
-    let res = await basecontroller.Create(URL_Params, req.body);
-    
-    return res;
+    try {
+        let res = await basecontroller.Create(URL_Params, req.body);
+
+        if(res.data.success){
+            res.redirect('/');
+        } else{
+            throw Error(res.data);
+        }
+        return res;
+
+    } catch(error) {
+        console.log(error.message);
+        res.send("Error del servidor. Vuelva a intentarlo");
+    }
 }
 
 Cliente.Get = async function Get(id){
