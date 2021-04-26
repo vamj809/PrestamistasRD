@@ -24,25 +24,31 @@ Prestamista.Authenticate = async (req, res) => {
     }
 }
 
-Prestamista.Create = async function Create(name, lastname, email, password){
-    let res = await basecontroller.Create(URL_Params, {
-        displayname: lastname + ', ' + name,
-        email: email,
-        password: password
-    });
+Prestamista.Create = async (req, res) => {
+    try {
+        let res = await basecontroller.Create(URL_Params, {
+            username: req.body.email,
+            displayname: req.body.lastname + ', ' + req.body.firstname,
+            email: req.body.email,
+            passwordHash: 'demo',
+            passwordSalt: req.body.password
+        });
 
-    console.log(res.status);
-    console.log(res.data);
-    
-    return res;
+        if(res.data.success){
+            res.redirect('/');
+        } else{
+            throw Error(res.data);
+        }
+        return res;
+
+    } catch(error) {
+        console.log(error.message);
+        res.send("Error del servidor. Vuelva a intentarlo");
+    }
 }
 
 Prestamista.GetAll = async function GetAll(){
     let res = await basecontroller.ReadAll(URL_Params);
-
-    console.log(res.status);
-    console.log(res.data);
-    
     return res;
 }
 
