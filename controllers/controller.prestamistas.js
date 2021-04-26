@@ -78,7 +78,7 @@ Prestamista.Update = async function Update(prestamista){
 }
 
 Prestamista.Delete = async function Delete(id){
-    let res = await basecontroller.Update(URL_Params, id);
+    let res = await basecontroller.Delete(URL_Params, id);
 
     console.log(res.status);
     console.log(res.data);

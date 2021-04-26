@@ -3,11 +3,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const routes = require("./routes");
 const app = express();
+
 //Establecer formato de requests y responses.
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 app.set("view engine", "ejs");
 app.set("views", __dirname + "/views");
+
 //para leer archivos de css ubicados en views/public/assets
 app.use('/public', express.static('views/public'));
 
@@ -15,7 +18,7 @@ app.use('/public', express.static('views/public'));
 app.use(routes);
 
 //MONGODB CONFIG
-const MONGODB_URI = "mongodb+srv://loaner:1234@myvmcluster.tec0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const MONGODB_URI = "mongodb+srv://loaner:prestamistasrd@myvmcluster.tec0x.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 mongoose.connect(MONGODB_URI || 'mongodb://localhost/2800', {
     useNewUrlParser: true,
     useUnifiedTopology: true
