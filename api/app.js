@@ -86,14 +86,14 @@ const newPrestamista = new Prestamista(data1);
 // });
 
 const Cliente = mongoose.model('Cliente', ClienteSchema);
-/* const data2 = {
+const data2 = {
     id: "c10755",
     idPrestamista: "p0002",
     Nombre: "Pedro Rodriguez",
     Cedula: 001-7022589-5,
     Telefono: 829-914-0766,
     Endeudado: false
-} */
+} 
 const newCliente = new Cliente(data2);
 // newCliente.save((error) => {
 //     if (error) {
@@ -114,7 +114,7 @@ const newCliente = new Cliente(data2);
 // });
 
 const Prestamo = mongoose.model('Prestamo', PrestamoSchema);
-/* const data3 = {
+ const data3 = {
     id: "pr10544",
     idCliente: "c19314",
     Monto: 5000,
@@ -124,7 +124,7 @@ const Prestamo = mongoose.model('Prestamo', PrestamoSchema);
     montoRestante: 0,
     fechaPrestamo: "20/12/2020",
     fechaLimite: "20/6/2021"
-} */
+} 
 const newPrestamo = new Prestamo(data3);
 // newPrestamo.save((error) => {
 //     if (error) {
@@ -418,6 +418,6 @@ const savePagos = (data) => {
 
 
 //configure the server port
-/* app.listen(2800, () => {
+app.listen(2800, () => {
     console.log('Server is running on port 2800')
-}) */
+}) 
