@@ -35,9 +35,9 @@ Prestamo.Create = async (req, res) => {
 // }
 
 
-Prestamo.GetAll = async function GetAll(){
+Prestamo.GetAll = async (req, res) => {
     let response = await basecontroller.ReadAll(URL_Params);
-    return response;
+    return response.data;
 }
 
 Prestamo.Update = async (req, res) => {
