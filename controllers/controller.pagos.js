@@ -1,4 +1,3 @@
-const model = require('../models/model.prestamistas');
 const basecontroller = require('./controller.base');
 const URL_Params = basecontroller.URL.Pagos;
 const Pago = {}
